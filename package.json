@@ -1,0 +1,30 @@
+{
+  "name": "sockjs-middleware",
+  "version": "1.0.0",
+  "description": "Redux middleware for SockJS",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --config=./.eslintrc.js ./*",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SockJS",
+    "Redux"
+  ],
+  "author": {
+    "name": "Rodion Volchkov",
+    "email": "volchkov.rodion@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "sockjs-client": "^1.1.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1"
+  }
+}
