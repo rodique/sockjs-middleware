@@ -1,6 +1,6 @@
 import SockJS from 'sockjs-client';
 
-function createSockJS(url, options, events) {
+export const createSockJS = (url, options, events) => {
   const socket = new SockJS(url, options);
   const sockCommandsBuffer = [];
   socket.events = events;
@@ -21,20 +21,16 @@ function createSockJS(url, options, events) {
   };
 
   return socket;
-}
+};
 
-function createSockJSMiddleware(sock) {
-  return ({ dispatch }) => {
-    sock.onmessage = function onmessage(msg) {
-      const message = JSON.parse(msg.data);
+export const createSockJSMiddleware = sock => ({ dispatch }) => {
+  sock.onmessage = function onmessage(msg) {
+    const message = JSON.parse(msg.data);
 
-      if (message.event in this.events) {
-        dispatch(this.events[message.event](message.data));
-      }
-    };
-
-    return next => action => next(action);
+    if (message.event in this.events) {
+      dispatch(this.events[message.event](message.data));
+    }
   };
-}
 
-export default { createSockJS, createSockJSMiddleware };
+  return next => action => next(action);
+};
