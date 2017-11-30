@@ -20,17 +20,21 @@ export const createSockJS = (url, options, events) => {
     }
   };
 
-  return socket;
+  function callback(dispatch) {
+    socket.onmessage = function onmessage(msg) {
+      const message = JSON.parse(msg.data);
+
+      if (message.event in socket.events) {
+        dispatch(this.events[message.event](message.data));
+      }
+    };
+  }
+
+  return callback;
 };
 
-export const createSockJSMiddleware = sock => ({ dispatch }) => {
-  sock.onmessage = function onmessage(msg) {
-    const message = JSON.parse(msg.data);
-
-    if (message.event in this.events) {
-      dispatch(this.events[message.event](message.data));
-    }
-  };
+export const createSockJSMiddleware = callback => ({ dispatch }) => {
+  callback(dispatch);
 
   return next => action => next(action);
 };
