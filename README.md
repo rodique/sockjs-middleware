@@ -43,12 +43,12 @@ import { updateBalance } from 'actions';
 import reducers from './reducers';
 
 
-const socket = createSockJS(
+const socketCallback = createSockJS(
   '/stream',
   { cookie: true },
   { balance: updateBalance },
 );
-const sockJSMiddleware = createSockJSMiddleware(socket);
+const sockJSMiddleware = createSockJSMiddleware(socketCallback);
 
 const store = createStore(
   combineReducers(reducers),
