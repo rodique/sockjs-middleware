@@ -2,7 +2,7 @@
   "name": "sockjs-middleware",
   "version": "1.0.0",
   "description": "Redux middleware for SockJS",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --config=./.eslintrc.js ./*",
     "test": "echo \"Error: no test specified\" && exit 1"

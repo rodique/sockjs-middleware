@@ -1,6 +1,6 @@
 import SockJS from 'sockjs-client';
 
-export const createSockJS = (url, options, events) => {
+const createSockJS = (url, options, events) => {
   const socket = new SockJS(url, options);
   const sockCommandsBuffer = [];
   socket.events = events;
@@ -33,8 +33,13 @@ export const createSockJS = (url, options, events) => {
   return callback;
 };
 
-export const createSockJSMiddleware = callback => ({ dispatch }) => {
+const createSockJSMiddleware = callback => ({ dispatch }) => {
   callback(dispatch);
 
   return next => action => next(action);
+};
+
+export {
+  createSockJS,
+  createSockJSMiddleware,
 };
